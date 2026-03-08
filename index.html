@@ -199,7 +199,7 @@
       }
     }
 
-    /* Only show the settings button to the student (has PAT configured) */
+    /* settings button to the student */
     .btn-settings {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.68rem;
@@ -222,7 +222,7 @@
       color: var(--accent);
     }
 
-    /* ── STATS BAR ── */
+    /* ── Stats Bar ── */
     .stats-bar {
       position: relative;
       z-index: 10;
@@ -265,7 +265,7 @@
       text-transform: uppercase;
     }
 
-    /* ── MASTER PROGRESS ── */
+    /* ── Master Progress ── */
     .master-progress {
       position: relative;
       z-index: 10;
@@ -324,7 +324,7 @@
       }
     }
 
-    /* ── MAIN ── */
+    /* ── Main ── */
     main {
       position: relative;
       z-index: 10;
@@ -352,7 +352,7 @@
       background: linear-gradient(90deg, var(--border), transparent);
     }
 
-    /* ── WEEK GRID ── */
+    /* ── Week Grid ── */
     .week-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -515,7 +515,7 @@
       color: var(--accent);
     }
 
-    /* ── MODALS ── */
+    /* ── Modals ── */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -710,7 +710,7 @@
       word-break: break-word;
     }
 
-    /* ── SETTINGS EXTRAS ── */
+    /* ── Settings Extra ── */
     .settings-info {
       background: rgba(0, 212, 255, 0.04);
       border: 1px solid rgba(0, 212, 255, 0.15);
@@ -744,7 +744,7 @@
       line-height: 1.6;
     }
 
-    /* ── SETUP BANNER (shown when GIST_ID not set in code) ── */
+    /* ── Setup Banner ── */
     .setup-banner {
       display: none;
       margin: 32px 40px 0;
@@ -768,7 +768,7 @@
       color: #ffaa44;
     }
 
-    /* ── FOOTER ── */
+    /* ── Footer ── */
     footer {
       position: relative;
       z-index: 10;
@@ -852,7 +852,7 @@
 
   <!-- Shown only when GIST_ID constant below is not yet filled in -->
   <div class="setup-banner" id="setup-banner">
-    ⚠ <strong>Student Setup Required:</strong> Open index.html and set the <strong>GIST_ID</strong> constant
+    <strong>Student Setup Required:</strong> Open index.html and set the <strong>GIST_ID</strong> constant
     at the top of the &lt;script&gt; to your Gist ID, then commit &amp; push.
     Tutors will then see your progress automatically — no login needed.
   </div>
@@ -895,7 +895,7 @@
     PHELISTER AKINYI · EMBEDDED SYSTEMS · GEARBOX &nbsp;|&nbsp; PROGRESS TRACKER v2.0
   </footer>
 
-  <!-- PROGRESS EDIT MODAL (only shown to student with PAT) -->
+  <!-- Progess Edit Modal (shown to user with PAT) -->
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
       <button class="modal-close" id="modal-close">✕</button>
@@ -927,7 +927,7 @@
     </div>
   </div>
 
-  <!-- SETTINGS MODAL (student only — enter PAT to unlock edit mode) -->
+  <!-- Settings Modal (enter PAT to unlock edit mode) -->
   <div class="modal-overlay" id="settings-overlay">
     <div class="modal" style="max-width:520px">
       <button class="modal-close" id="settings-close">✕</button>
@@ -953,11 +953,8 @@
 
   <script>
     // ─────────────────────────────────────────────────────────────────────────────
-    // STUDENT SETUP: After creating your Gist, paste its ID between the quotes
-    // below, then commit & push. Tutors will see your data automatically.
-    // Gist URL: https://gist.github.com/YOUR_USERNAME/<PASTE_ID_HERE>
-    // ─────────────────────────────────────────────────────────────────────────────
-    const GIST_ID = 'fb74f16360ac1425f479bb1d1856c9ec';   // ← PASTE YOUR GIST ID HERE
+    //  SETUP: After creating your Gist, paste its ID between the quotes
+    const GIST_ID = 'fb74f16360ac1425f479bb1d1856c9ec'; 
     // ─────────────────────────────────────────────────────────────────────────────
 
     const WEEKS = [
@@ -976,12 +973,12 @@
       { title: "Student Project", desc: "Final integrated host project combining all course concepts into a working embedded system." }
     ];
 
-    // PAT stored in localStorage — only on your (the student's) device
+    // PAT stored in localStorage
     function getPAT() { return localStorage.getItem('gist_pat') || ''; }
     function savePAT(t) { localStorage.setItem('gist_pat', t); }
     function isEditor() { return !!getPAT(); }
 
-    // ── SYNC STATUS ──
+    // ── Sync Status ──
     function setSyncStatus(state, text) {
       document.getElementById('sync-status').className = state;
       document.getElementById('sync-label').textContent = text;
@@ -1041,7 +1038,7 @@
       }
     }
 
-    // ── APP STATE ──
+    // ── App State ──
     let data = {};
     let currentWeek = null;
 
@@ -1107,7 +1104,7 @@
       }
     }
 
-    // ── PROGRESS MODAL ──
+    // ── Progress Modal ──
     function openModal(i) {
       if (!isEditor()) return;
       currentWeek = i;
@@ -1146,7 +1143,7 @@
       if (e.target === document.getElementById('modal-overlay')) closeModal();
     });
 
-    // ── SETTINGS MODAL (PAT entry) ──
+    // ── Settings Modal (PAT entry) ──
     function openSettings() {
       document.getElementById('cfg-token').value = getPAT();
       document.getElementById('settings-overlay').classList.add('open');
@@ -1169,8 +1166,7 @@
       render(); // re-render to show edit buttons
     });
 
-    // Secret tap: triple-click the footer to reveal the settings button
-    // (so tutors don't accidentally see it, but student can access it)
+    // 
     let footerTaps = 0, footerTimer;
     document.querySelector('footer').addEventListener('click', () => {
       footerTaps++;
