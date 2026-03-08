@@ -31,129 +31,97 @@
 
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image:
         linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     body::after {
       content: '';
-      position: fixed;
-      top: -200px; left: -200px;
+      position: fixed; top: -200px; left: -200px;
       width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     .glow-orb {
-      position: fixed;
-      bottom: -150px; right: -100px;
+      position: fixed; bottom: -150px; right: -100px;
       width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(255,107,0,0.05) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     /* ── HEADER ── */
     header {
-      position: relative;
-      z-index: 10;
+      position: relative; z-index: 10;
       padding: 48px 40px 32px;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      flex-wrap: wrap;
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
       background: linear-gradient(to bottom, rgba(0,212,255,0.04), transparent);
     }
 
     .header-text h1 {
       font-family: 'Orbitron', monospace;
       font-size: clamp(1.4rem, 3vw, 2.2rem);
-      font-weight: 900;
-      color: #fff;
+      font-weight: 900; color: #fff;
       letter-spacing: 0.05em;
       text-shadow: 0 0 20px rgba(0,212,255,0.5);
     }
     .header-text h1 span { color: var(--accent); }
     .header-text .sub {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--accent2);
-      letter-spacing: 0.15em;
-      margin-top: 6px;
+      font-size: 0.8rem; color: var(--accent2);
+      letter-spacing: 0.15em; margin-top: 6px;
     }
     .header-text .course-badge {
-      display: inline-block;
-      margin-top: 10px;
+      display: inline-block; margin-top: 10px;
       padding: 4px 14px;
       background: rgba(255,107,0,0.1);
       border: 1px solid rgba(255,107,0,0.4);
-      border-radius: 4px;
-      font-size: 0.75rem;
-      color: var(--accent2);
-      letter-spacing: 0.1em;
+      border-radius: 4px; font-size: 0.75rem;
+      color: var(--accent2); letter-spacing: 0.1em;
     }
 
-    /* ── SYNC CONTROLS ── */
+    /* ── HEADER ACTIONS ── */
     .header-actions {
       margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
 
     #sync-status {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 4px;
-      border: 1px solid transparent;
-      transition: all 0.3s;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 4px;
+      border: 1px solid transparent; transition: all 0.3s;
     }
-    #sync-status.idle      { color: var(--muted);   border-color: var(--border);              background: rgba(255,255,255,0.02); }
-    #sync-status.loading   { color: var(--accent);  border-color: rgba(0,212,255,0.3);        background: rgba(0,212,255,0.05);   }
-    #sync-status.saved     { color: var(--green);   border-color: rgba(0,255,136,0.3);        background: rgba(0,255,136,0.05);   }
-    #sync-status.error     { color: #ff4444;        border-color: rgba(255,68,68,0.3);        background: rgba(255,68,68,0.05);   }
-    #sync-status.no-config { color: var(--accent2); border-color: rgba(255,107,0,0.3);        background: rgba(255,107,0,0.05);   }
+    #sync-status.idle      { color: var(--muted);   border-color: var(--border);         background: rgba(255,255,255,0.02); }
+    #sync-status.loading   { color: var(--accent);  border-color: rgba(0,212,255,0.3);   background: rgba(0,212,255,0.05);   }
+    #sync-status.synced    { color: var(--green);   border-color: rgba(0,255,136,0.3);   background: rgba(0,255,136,0.05);   }
+    #sync-status.error     { color: #ff4444;        border-color: rgba(255,68,68,0.3);   background: rgba(255,68,68,0.05);   }
+    #sync-status.no-config { color: var(--accent2); border-color: rgba(255,107,0,0.3);   background: rgba(255,107,0,0.05);   }
+    #sync-status.readonly  { color: var(--muted);   border-color: rgba(0,212,255,0.2);   background: rgba(0,212,255,0.03);   }
 
     .sync-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-      flex-shrink: 0;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
     }
     #sync-status.loading .sync-dot { animation: blink 0.8s ease-in-out infinite; }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
+    /* Only show the settings button to the student (has PAT configured) */
     .btn-settings {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      padding: 7px 16px;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      border-radius: 4px;
-      cursor: pointer;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      padding: 7px 16px; background: transparent;
+      border: 1px solid var(--border); color: var(--muted);
+      border-radius: 4px; cursor: pointer;
       display: flex; align-items: center; gap: 7px;
-      transition: all 0.2s;
-      white-space: nowrap;
+      transition: all 0.2s; white-space: nowrap;
     }
     .btn-settings:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -161,45 +129,29 @@
     .stats-bar {
       position: relative; z-index: 10;
       display: flex; flex-wrap: wrap; gap: 1px;
-      background: var(--border);
-      border-bottom: 1px solid var(--border);
+      background: var(--border); border-bottom: 1px solid var(--border);
     }
     .stat {
-      flex: 1; min-width: 140px;
-      background: var(--surface);
-      padding: 18px 24px;
-      display: flex; flex-direction: column; gap: 4px;
+      flex: 1; min-width: 140px; background: var(--surface);
+      padding: 18px 24px; display: flex; flex-direction: column; gap: 4px;
     }
-    .stat .val {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.6rem; font-weight: 700;
-      color: var(--accent);
-    }
+    .stat .val { font-family: 'Orbitron', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); }
     .stat .val.orange { color: var(--accent2); }
     .stat .val.green  { color: var(--green); }
-    .stat .label {
-      font-size: 0.7rem; color: var(--muted);
-      letter-spacing: 0.12em; text-transform: uppercase;
-    }
+    .stat .label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
 
     /* ── MASTER PROGRESS ── */
     .master-progress {
       position: relative; z-index: 10;
-      padding: 24px 40px;
-      background: var(--surface);
+      padding: 24px 40px; background: var(--surface);
       border-bottom: 1px solid var(--border);
     }
     .master-progress .prog-label {
       display: flex; justify-content: space-between;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem; color: var(--muted);
-      margin-bottom: 10px;
+      font-size: 0.75rem; color: var(--muted); margin-bottom: 10px;
     }
-    .prog-track {
-      height: 8px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 4px; overflow: hidden;
-    }
+    .prog-track { height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
     .prog-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--green));
@@ -209,55 +161,36 @@
       position: relative;
     }
     .prog-fill::after {
-      content: '';
-      position: absolute;
-      right: 0; top: 0; bottom: 0; width: 20px;
+      content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 20px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
       animation: shimmer 2s infinite;
     }
-    @keyframes shimmer {
-      0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; }
-    }
+    @keyframes shimmer { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
 
     /* ── MAIN ── */
-    main {
-      position: relative; z-index: 10;
-      padding: 40px; max-width: 1400px; margin: 0 auto;
-    }
+    main { position: relative; z-index: 10; padding: 40px; max-width: 1400px; margin: 0 auto; }
     .section-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.75rem; letter-spacing: 0.25em;
-      color: var(--muted); text-transform: uppercase;
-      margin-bottom: 24px;
-      display: flex; align-items: center; gap: 12px;
+      font-family: 'Orbitron', monospace; font-size: 0.75rem;
+      letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase;
+      margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
     }
-    .section-title::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, var(--border), transparent);
-    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
 
     /* ── WEEK GRID ── */
-    .week-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
-    }
+    .week-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
     .week-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--card); border: 1px solid var(--border);
       border-radius: 8px; padding: 20px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      position: relative; overflow: hidden;
+      transition: all 0.25s ease; position: relative; overflow: hidden;
     }
+    .week-card.editable { cursor: pointer; }
     .week-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--accent); opacity: 0;
-      transition: opacity 0.25s;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent); opacity: 0; transition: opacity 0.25s;
     }
-    .week-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,255,0.12); }
-    .week-card:hover::before { opacity: 1; }
+    .week-card.editable:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,255,0.12); }
+    .week-card.editable:hover::before { opacity: 1; }
     .week-card.completed  { border-color: rgba(0,255,136,0.3); }
     .week-card.completed::before  { background: var(--green);   opacity: 1; }
     .week-card.in-progress { border-color: rgba(255,107,0,0.4); }
@@ -269,9 +202,9 @@
     .status-pending  { background: rgba(90,138,170,0.15); color: var(--muted); }
     .status-progress { background: rgba(255,107,0,0.15); color: var(--accent2); border: 1px solid rgba(255,107,0,0.3); }
     .status-done     { background: rgba(0,255,136,0.1);  color: var(--green);   border: 1px solid rgba(0,255,136,0.3); }
-    .week-title  { font-size: 0.95rem; font-weight: 600; color: #dff0ff; margin-bottom: 8px; line-height: 1.3; }
-    .week-desc   { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
-    .week-prog   { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-bottom: 10px; }
+    .week-title { font-size: 0.95rem; font-weight: 600; color: #dff0ff; margin-bottom: 8px; line-height: 1.3; }
+    .week-desc  { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+    .week-prog  { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-bottom: 10px; }
     .week-prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--green)); transition: width 0.8s ease; }
     .week-card.in-progress .week-prog-fill { background: linear-gradient(90deg, var(--accent2), #ffaa00); }
     .week-footer { display: flex; justify-content: space-between; align-items: center; }
@@ -280,82 +213,55 @@
       font-family: 'Share Tech Mono', monospace; font-size: 0.65rem;
       padding: 4px 12px; background: transparent;
       border: 1px solid var(--border); color: var(--muted);
-      border-radius: 3px; cursor: pointer;
-      transition: all 0.2s; letter-spacing: 0.08em;
+      border-radius: 3px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.08em;
     }
     .week-edit-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── MODAL (shared) ── */
+    /* ── MODALS ── */
     .modal-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(6px);
-      z-index: 100;
-      align-items: center; justify-content: center;
-      padding: 20px;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(6px);
+      z-index: 100; align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.open { display: flex; }
     .modal {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px; padding: 32px;
-      width: 100%; max-width: 520px;
-      position: relative;
-      box-shadow: 0 0 60px rgba(0,212,255,0.1);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; width: 100%; max-width: 520px;
+      position: relative; box-shadow: 0 0 60px rgba(0,212,255,0.1);
       animation: modal-in 0.3s ease;
     }
-    @keyframes modal-in {
-      from { opacity: 0; transform: scale(0.95) translateY(10px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      background: none; border: none;
-      color: var(--muted); cursor: pointer;
-      font-size: 1.2rem; transition: color 0.2s;
-    }
+    @keyframes modal-in { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.2rem; transition: color 0.2s; }
     .modal-close:hover { color: var(--accent); }
     .modal h2 { font-family: 'Orbitron', monospace; font-size: 1rem; color: var(--accent); margin-bottom: 4px; }
     .modal .modal-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 24px; font-family: 'Share Tech Mono', monospace; }
 
     .form-group { margin-bottom: 18px; }
-    .form-group label {
-      display: block; font-size: 0.72rem; letter-spacing: 0.12em;
-      color: var(--muted); text-transform: uppercase;
-      margin-bottom: 8px; font-family: 'Share Tech Mono', monospace;
-    }
+    .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; font-family: 'Share Tech Mono', monospace; }
     .form-group select,
     .form-group input[type="range"],
     .form-group textarea,
     .form-group input[type="text"],
     .form-group input[type="password"] {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px; color: var(--text);
-      font-family: 'Exo 2', sans-serif;
-      font-size: 0.85rem; padding: 10px 14px;
-      outline: none; transition: border-color 0.2s;
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); font-family: 'Exo 2', sans-serif;
+      font-size: 0.85rem; padding: 10px 14px; outline: none; transition: border-color 0.2s;
     }
-    .form-group select:focus,
-    .form-group textarea:focus,
-    .form-group input[type="text"]:focus,
-    .form-group input[type="password"]:focus { border-color: var(--accent); box-shadow: 0 0 12px rgba(0,212,255,0.1); }
+    .form-group select:focus, .form-group textarea:focus,
+    .form-group input[type="text"]:focus, .form-group input[type="password"]:focus {
+      border-color: var(--accent); box-shadow: 0 0 12px rgba(0,212,255,0.1);
+    }
     .form-group textarea { resize: vertical; min-height: 80px; }
-
     .range-row { display: flex; align-items: center; gap: 12px; }
     .range-row input[type="range"] { padding: 0; accent-color: var(--accent); cursor: pointer; height: 4px; }
     .range-val { font-family: 'Orbitron', monospace; font-size: 1rem; color: var(--accent); min-width: 40px; text-align: right; }
 
     .modal-actions { display: flex; gap: 10px; margin-top: 24px; }
     .btn-save {
-      flex: 1; padding: 12px;
-      background: var(--accent); color: #000;
+      flex: 1; padding: 12px; background: var(--accent); color: #000;
       border: none; border-radius: 6px;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s;
+      font-family: 'Orbitron', monospace; font-size: 0.75rem;
+      font-weight: 700; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s;
     }
     .btn-save:hover { background: #33deff; box-shadow: 0 0 20px rgba(0,212,255,0.4); }
     .btn-cancel {
@@ -369,46 +275,52 @@
     .notes-area {
       width: 100%; background: rgba(0,0,0,0.3);
       border: 1px dashed var(--border); border-radius: 4px;
-      padding: 8px 12px; color: var(--muted);
-      font-size: 0.75rem; font-family: 'Share Tech Mono', monospace;
-      line-height: 1.5; margin-top: 10px;
+      padding: 8px 12px; color: var(--muted); font-size: 0.75rem;
+      font-family: 'Share Tech Mono', monospace; line-height: 1.5; margin-top: 10px;
       min-height: 40px; overflow: hidden; word-break: break-word;
     }
 
     /* ── SETTINGS EXTRAS ── */
     .settings-info {
-      background: rgba(0,212,255,0.04);
-      border: 1px solid rgba(0,212,255,0.15);
+      background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.15);
       border-radius: 6px; padding: 14px 16px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.7rem; color: var(--muted);
-      line-height: 1.8; margin-bottom: 22px;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+      color: var(--muted); line-height: 1.8; margin-bottom: 22px;
     }
     .settings-info a { color: var(--accent); text-decoration: none; }
     .settings-info a:hover { text-decoration: underline; }
     .settings-info strong { color: var(--text); }
-    .settings-note {
+    .settings-note { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--dim); margin-top: 7px; line-height: 1.6; }
+
+    /* ── SETUP BANNER (shown when GIST_ID not set in code) ── */
+    .setup-banner {
+      display: none;
+      margin: 32px 40px 0;
+      padding: 18px 22px;
+      background: rgba(255,107,0,0.07);
+      border: 1px solid rgba(255,107,0,0.3);
+      border-radius: 8px;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem; color: var(--dim);
-      margin-top: 7px; line-height: 1.6;
+      font-size: 0.75rem;
+      color: var(--accent2);
+      line-height: 1.8;
+      position: relative; z-index: 10;
     }
+    .setup-banner.visible { display: block; }
+    .setup-banner strong { color: #ffaa44; }
 
     /* ── FOOTER ── */
     footer {
-      position: relative; z-index: 10;
-      text-align: center; padding: 28px;
-      border-top: 1px solid var(--border);
-      font-family: 'Share Tech Mono', monospace;
+      position: relative; z-index: 10; text-align: center; padding: 28px;
+      border-top: 1px solid var(--border); font-family: 'Share Tech Mono', monospace;
       font-size: 0.7rem; color: var(--dim); letter-spacing: 0.1em;
     }
 
-    /* ── SCAN LINE ── */
     @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
     .scanline {
       position: fixed; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, transparent, rgba(0,212,255,0.15), transparent);
-      animation: scan 8s linear infinite;
-      pointer-events: none; z-index: 1;
+      animation: scan 8s linear infinite; pointer-events: none; z-index: 1;
     }
 
     @media (max-width: 600px) {
@@ -417,6 +329,7 @@
       .stats-bar .stat { padding: 14px 16px; }
       .master-progress { padding: 16px 20px; }
       .header-actions { width: 100%; }
+      .setup-banner { margin: 20px 16px 0; }
     }
   </style>
 </head>
@@ -425,24 +338,28 @@
 <div class="glow-orb"></div>
 <div class="scanline"></div>
 
-<!-- HEADER -->
 <header>
   <div class="header-text">
     <h1>PHELISTER <span>AKINYI</span></h1>
     <div class="sub">EMBEDDED SYSTEMS ENGINEER IN TRAINING</div>
     <div class="course-badge">GEARBOX · EMBEDDED SYSTEMS · 13-WEEK PROGRAM</div>
   </div>
-
   <div class="header-actions">
-    <div id="sync-status" class="no-config">
+    <div id="sync-status" class="loading">
       <span class="sync-dot"></span>
-      <span id="sync-label">NOT CONFIGURED</span>
+      <span id="sync-label">LOADING...</span>
     </div>
-    <button class="btn-settings" id="btn-settings">⚙ SYNC SETTINGS</button>
+    <button class="btn-settings" id="btn-settings" style="display:none">⚙ EDIT MODE</button>
   </div>
 </header>
 
-<!-- STATS BAR -->
+<!-- Shown only when GIST_ID constant below is not yet filled in -->
+<div class="setup-banner" id="setup-banner">
+  ⚠ <strong>Student Setup Required:</strong> Open index.html and set the <strong>GIST_ID</strong> constant
+  at the top of the &lt;script&gt; to your Gist ID, then commit &amp; push.
+  Tutors will then see your progress automatically — no login needed.
+</div>
+
 <div class="stats-bar">
   <div class="stat"><div class="val" id="stat-completed">0</div><div class="label">Weeks Completed</div></div>
   <div class="stat"><div class="val orange" id="stat-inprogress">0</div><div class="label">In Progress</div></div>
@@ -450,7 +367,6 @@
   <div class="stat"><div class="val green" id="stat-overall">0%</div><div class="label">Overall Progress</div></div>
 </div>
 
-<!-- MASTER PROGRESS -->
 <div class="master-progress">
   <div class="prog-label">
     <span>COURSE COMPLETION</span>
@@ -461,23 +377,21 @@
   </div>
 </div>
 
-<!-- MAIN -->
 <main>
   <div class="section-title">HOST PROJECT TRACKER — WEEKS 01 THROUGH 13</div>
   <div class="week-grid" id="week-grid"></div>
 </main>
 
 <footer>
-  PHELISTER AKINYI · EMBEDDED SYSTEMS · GEARBOX &nbsp;|&nbsp; PROGRESS TRACKER v2.0 · CLOUD SYNC
+  PHELISTER AKINYI · EMBEDDED SYSTEMS · GEARBOX &nbsp;|&nbsp; PROGRESS TRACKER v2.0
 </footer>
 
-<!-- PROGRESS MODAL -->
+<!-- PROGRESS EDIT MODAL (only shown to student with PAT) -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <button class="modal-close" id="modal-close">✕</button>
     <h2 id="modal-title">WEEK 01</h2>
     <div class="modal-sub" id="modal-sub">Update your progress</div>
-
     <div class="form-group">
       <label for="modal-status">Status</label>
       <select id="modal-status">
@@ -486,7 +400,6 @@
         <option value="completed">Completed</option>
       </select>
     </div>
-
     <div class="form-group">
       <label for="modal-range">Completion — <span id="range-display">0%</span></label>
       <div class="range-row">
@@ -494,12 +407,10 @@
         <div class="range-val" id="range-val">0%</div>
       </div>
     </div>
-
     <div class="form-group">
       <label for="modal-notes">Notes and Reflections</label>
       <textarea id="modal-notes" placeholder="What did you build? What did you learn? Any blockers?"></textarea>
     </div>
-
     <div class="modal-actions">
       <button class="btn-cancel" id="modal-cancel">CANCEL</button>
       <button class="btn-save" id="modal-save">SAVE PROGRESS</button>
@@ -507,43 +418,38 @@
   </div>
 </div>
 
-<!-- SETTINGS MODAL -->
+<!-- SETTINGS MODAL (student only — enter PAT to unlock edit mode) -->
 <div class="modal-overlay" id="settings-overlay">
-  <div class="modal" style="max-width:560px">
+  <div class="modal" style="max-width:520px">
     <button class="modal-close" id="settings-close">✕</button>
-    <h2>⚙ SYNC SETTINGS</h2>
-    <div class="modal-sub">Connect your GitHub Gist for cloud sync across all devices</div>
-
+    <h2>⚙ EDIT MODE LOGIN</h2>
+    <div class="modal-sub">Enter your GitHub token to enable progress editing</div>
     <div class="settings-info">
-      <strong>📋 One-time setup:</strong><br>
-      1. Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
-      &nbsp;&nbsp;&nbsp;→ Note: "Progress Tracker", select <strong>gist</strong> scope → <strong>Generate token</strong> → copy it<br>
-      2. Go to <a href="https://gist.github.com" target="_blank">gist.github.com</a> → New secret gist<br>
-      &nbsp;&nbsp;&nbsp;→ Filename: <strong>es_progress.json</strong>, Content: <strong>{}</strong> → Create Gist<br>
-      3. Copy the Gist ID from the URL:<br>
-      &nbsp;&nbsp;&nbsp;<code>gist.github.com/yourusername/<strong>THIS_LONG_ID</strong></code>
+      This site reads progress from GitHub automatically — <strong>no setup needed for tutors.</strong><br><br>
+      To <strong>edit</strong> progress, enter your GitHub Personal Access Token (PAT) with <strong>gist</strong> scope.
+      Your token is stored only in this browser.
     </div>
-
     <div class="form-group">
-      <label for="cfg-token">GitHub Personal Access Token (PAT)</label>
+      <label for="cfg-token">GitHub Personal Access Token</label>
       <input type="password" id="cfg-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/>
-      <div class="settings-note">⚠ Stored only in this browser's localStorage — only used to talk to GitHub's API.</div>
+      <div class="settings-note">⚠ Never share your token. It only needs the "gist" scope.</div>
     </div>
-
-    <div class="form-group">
-      <label for="cfg-gist">Gist ID</label>
-      <input type="text" id="cfg-gist" placeholder="e.g. 4a8b2c1d0e9f3a2b1c0d"/>
-      <div class="settings-note">The long alphanumeric string at the end of your Gist's URL.</div>
-    </div>
-
     <div class="modal-actions">
       <button class="btn-cancel" id="settings-cancel">CANCEL</button>
-      <button class="btn-save" id="settings-save">SAVE &amp; SYNC NOW</button>
+      <button class="btn-save" id="settings-save">UNLOCK EDITING</button>
     </div>
   </div>
 </div>
 
 <script>
+  // ─────────────────────────────────────────────────────────────────────────────
+  // STUDENT SETUP: After creating your Gist, paste its ID between the quotes
+  // below, then commit & push. Tutors will see your data automatically.
+  // Gist URL: https://gist.github.com/YOUR_USERNAME/<PASTE_ID_HERE>
+  // ─────────────────────────────────────────────────────────────────────────────
+  const GIST_ID = '';   // ← PASTE YOUR GIST ID HERE
+  // ─────────────────────────────────────────────────────────────────────────────
+
   const WEEKS = [
     { title: "Introduction to Embedded Systems I", desc: "Project Management and Documentation. Introduction to embedded systems. Distribution of Students Kits" },
     { title: "Introduction to Embedded Systems I", desc: "Project Management and Documentation. Introduction to embedded systems. Distribution of Students Kits" },
@@ -560,54 +466,53 @@
     { title: "Student Project", desc: "Final integrated host project combining all course concepts into a working embedded system." }
   ];
 
-  // ── CONFIG stored in localStorage (only credentials, not progress data) ──
-  function getConfig() {
-    return {
-      token:  localStorage.getItem('gist_token') || '',
-      gistId: localStorage.getItem('gist_id')    || ''
-    };
-  }
-  function saveConfig(token, gistId) {
-    localStorage.setItem('gist_token', token);
-    localStorage.setItem('gist_id',    gistId);
-  }
+  // PAT stored in localStorage — only on your (the student's) device
+  function getPAT()     { return localStorage.getItem('gist_pat') || ''; }
+  function savePAT(t)   { localStorage.setItem('gist_pat', t); }
+  function isEditor()   { return !!getPAT(); }
 
-  // ── SYNC STATUS UI ──
+  // ── SYNC STATUS ──
   function setSyncStatus(state, text) {
     document.getElementById('sync-status').className = state;
     document.getElementById('sync-label').textContent = text;
   }
 
   // ── GITHUB GIST API ──
+  // READ: no auth — works for public gists, visible to everyone
   async function loadFromGist() {
-    const { token, gistId } = getConfig();
-    if (!token || !gistId) { setSyncStatus('no-config', 'NOT CONFIGURED'); return null; }
+    if (!GIST_ID) {
+      document.getElementById('setup-banner').classList.add('visible');
+      setSyncStatus('no-config', 'NOT SET UP');
+      return {};
+    }
     setSyncStatus('loading', 'LOADING...');
     try {
-      const res = await fetch(`https://api.github.com/gists/${gistId}`, {
-        headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+      // Public gist read — no Authorization header needed
+      const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const gist = await res.json();
       const content = gist.files['es_progress.json']?.content || '{}';
-      setSyncStatus('saved', 'SYNCED ✓');
+      setSyncStatus('synced', 'LIVE DATA ✓');
       return JSON.parse(content);
     } catch (e) {
-      setSyncStatus('error', 'LOAD FAILED — check token/gist ID');
+      setSyncStatus('error', 'LOAD FAILED');
       console.error('Gist load error:', e);
-      return null;
+      return {};
     }
   }
 
+  // WRITE: requires PAT — only the student has this
   async function saveToGist(progressData) {
-    const { token, gistId } = getConfig();
-    if (!token || !gistId) { setSyncStatus('no-config', 'NOT CONFIGURED'); return false; }
+    const pat = getPAT();
+    if (!pat || !GIST_ID) { setSyncStatus('error', 'CANNOT SAVE'); return false; }
     setSyncStatus('loading', 'SAVING...');
     try {
-      const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+      const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
         method: 'PATCH',
         headers: {
-          'Authorization': `token ${token}`,
+          'Authorization': `token ${pat}`,
           'Accept': 'application/vnd.github.v3+json',
           'Content-Type': 'application/json'
         },
@@ -616,7 +521,7 @@
         })
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setSyncStatus('saved', 'SAVED ✓');
+      setSyncStatus('synced', 'SAVED ✓');
       setTimeout(() => setSyncStatus('idle', 'SYNCED'), 2500);
       return true;
     } catch (e) {
@@ -635,7 +540,7 @@
   }
 
   function statusLabel(s) {
-    if (s === 'completed')  return '<span class="week-status status-done">DONE</span>';
+    if (s === 'completed')   return '<span class="week-status status-done">DONE</span>';
     if (s === 'in-progress') return '<span class="week-status status-progress">IN PROGRESS</span>';
     return '<span class="week-status status-pending">PENDING</span>';
   }
@@ -644,16 +549,17 @@
     const grid = document.getElementById('week-grid');
     grid.innerHTML = '';
     let completed = 0, inProgress = 0, totalPct = 0;
+    const canEdit = isEditor() && !!GIST_ID;
 
     WEEKS.forEach((w, i) => {
       const d = getWeekData(i);
-      if (d.status === 'completed')  completed++;
+      if (d.status === 'completed')   completed++;
       else if (d.status === 'in-progress') inProgress++;
       totalPct += d.pct;
 
       const card = document.createElement('div');
-      let cls = d.status === 'completed' ? 'completed' : d.status === 'in-progress' ? 'in-progress' : '';
-      card.className = `week-card ${cls}`;
+      const cls = d.status === 'completed' ? 'completed' : d.status === 'in-progress' ? 'in-progress' : '';
+      card.className = `week-card ${cls} ${canEdit ? 'editable' : ''}`;
       card.innerHTML = `
         <div class="week-header">
           <div class="week-num">WEEK ${String(i+1).padStart(2,'0')}</div>
@@ -666,7 +572,7 @@
           <div class="week-prog"><div class="week-prog-fill" style="width:${d.pct}%"></div></div>
           <div class="week-footer">
             <span class="week-prog-pct">${d.pct}% complete</span>
-            <button class="week-edit-btn" data-week="${i}">UPDATE →</button>
+            ${canEdit ? `<button class="week-edit-btn" data-week="${i}">UPDATE →</button>` : ''}
           </div>
         </div>
       `;
@@ -681,24 +587,27 @@
     document.getElementById('prog-pct-label').textContent  = `${completed} / 13 WEEKS`;
     document.getElementById('master-fill').style.width     = ((completed / 13) * 100) + '%';
 
-    document.querySelectorAll('.week-edit-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => { e.stopPropagation(); openModal(+btn.dataset.week); });
-    });
-    document.querySelectorAll('.week-card').forEach((card, i) => {
-      card.addEventListener('click', () => openModal(i));
-    });
+    if (canEdit) {
+      document.querySelectorAll('.week-edit-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => { e.stopPropagation(); openModal(+btn.dataset.week); });
+      });
+      document.querySelectorAll('.week-card.editable').forEach((card, i) => {
+        card.addEventListener('click', () => openModal(i));
+      });
+    }
   }
 
   // ── PROGRESS MODAL ──
   function openModal(i) {
+    if (!isEditor()) return;
     currentWeek = i;
     const d = getWeekData(i);
-    document.getElementById('modal-title').textContent   = `WEEK ${String(i+1).padStart(2,'0')} — UPDATE`;
-    document.getElementById('modal-sub').textContent     = WEEKS[i].title;
-    document.getElementById('modal-status').value        = d.status;
-    document.getElementById('modal-range').value         = d.pct;
-    document.getElementById('range-val').textContent     = d.pct + '%';
-    document.getElementById('modal-notes').value         = d.notes || '';
+    document.getElementById('modal-title').textContent = `WEEK ${String(i+1).padStart(2,'0')} — UPDATE`;
+    document.getElementById('modal-sub').textContent   = WEEKS[i].title;
+    document.getElementById('modal-status').value      = d.status;
+    document.getElementById('modal-range').value       = d.pct;
+    document.getElementById('range-val').textContent   = d.pct + '%';
+    document.getElementById('modal-notes').value       = d.notes || '';
     document.getElementById('modal-overlay').classList.add('open');
   }
   function closeModal() {
@@ -727,11 +636,9 @@
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   });
 
-  // ── SETTINGS MODAL ──
+  // ── SETTINGS MODAL (PAT entry) ──
   function openSettings() {
-    const { token, gistId } = getConfig();
-    document.getElementById('cfg-token').value = token;
-    document.getElementById('cfg-gist').value  = gistId;
+    document.getElementById('cfg-token').value = getPAT();
     document.getElementById('settings-overlay').classList.add('open');
   }
   function closeSettings() {
@@ -744,25 +651,35 @@
   document.getElementById('settings-overlay').addEventListener('click', (e) => {
     if (e.target === document.getElementById('settings-overlay')) closeSettings();
   });
-  document.getElementById('settings-save').addEventListener('click', async () => {
-    const token  = document.getElementById('cfg-token').value.trim();
-    const gistId = document.getElementById('cfg-gist').value.trim();
-    if (!token || !gistId) { alert('Please enter both your GitHub token and Gist ID.'); return; }
-    saveConfig(token, gistId);
+  document.getElementById('settings-save').addEventListener('click', () => {
+    const token = document.getElementById('cfg-token').value.trim();
+    if (!token) { alert('Please enter your GitHub Personal Access Token.'); return; }
+    savePAT(token);
     closeSettings();
-    const loaded = await loadFromGist();
-    if (loaded !== null) { data = loaded; render(); }
+    render(); // re-render to show edit buttons
+  });
+
+  // Secret tap: triple-click the footer to reveal the settings button
+  // (so tutors don't accidentally see it, but student can access it)
+  let footerTaps = 0, footerTimer;
+  document.querySelector('footer').addEventListener('click', () => {
+    footerTaps++;
+    clearTimeout(footerTimer);
+    footerTimer = setTimeout(() => { footerTaps = 0; }, 800);
+    if (footerTaps >= 3) {
+      footerTaps = 0;
+      document.getElementById('btn-settings').style.display = 'flex';
+      openSettings();
+    }
   });
 
   // ── INIT ──
   async function init() {
-    const { token, gistId } = getConfig();
-    if (token && gistId) {
-      const loaded = await loadFromGist();
-      if (loaded !== null) { data = loaded; }
-    } else {
-      setSyncStatus('no-config', 'NOT CONFIGURED');
+    // Show settings button if already logged in as editor
+    if (isEditor() && GIST_ID) {
+      document.getElementById('btn-settings').style.display = 'flex';
     }
+    data = await loadFromGist();
     render();
   }
 
